@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">iso8583</string>
+    <string name="parse_field">Parse Field</string>
+    <string name="config_field">Config</string>
+    <string name="introduction">Welcome to GINI Payment Solutions.</string>
+    <string name="field">Number…</string>
+    <string name="name">Name…</string>
+    <string name="length">Length…</string>
+    <string name="save">Save</string>
+    <string name="close">Close</string>
+    <string name="numberItem">Number :</string>
+    <string name="nameItem">Name :</string>
+    <string name="lengthItem">Length :</string>
+    <string name="typeItem">Type :</string>
+    <string name="search">Search field…</string>
+    <string name="load_data">Loading data…</string>
+    <string name="handle_data">Handling data…</string>
+    <string name="save_successfully">Save successfully</string>
+    <string name="update_successfully">Update successfully</string>
+    <string name="save_failed">Save failed</string>
+    <string name="input_empty">Snput empty !</string>
+</resources>
