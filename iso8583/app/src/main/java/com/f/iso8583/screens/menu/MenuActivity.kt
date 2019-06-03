@@ -21,7 +21,7 @@ class MenuActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.mButtonParseField -> {
+            R.id.mButtonParseMsg -> {
                 startActivity(Intent(this, ParserActivity::class.java))
 
             }

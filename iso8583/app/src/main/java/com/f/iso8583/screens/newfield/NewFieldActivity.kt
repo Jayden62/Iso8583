@@ -112,10 +112,10 @@ class NewFieldActivity : AppCompatActivity(), View.OnClickListener {
                             value?.typeId!!
                         )
                         fieldRepository?.onAddOrUpdateField(data)
-                        clearData()
                         Dialog.showMessageDialog(this.getString(R.string.save_successfully), this)
 
                     }
+                    clearData()
                 }
 
             }

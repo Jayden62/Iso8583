@@ -16,6 +16,7 @@
             android:background="@drawable/bg_input_field"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
+            android:cursorVisible="false"
             android:layout_height="wrap_content"/>
 
     <ImageView

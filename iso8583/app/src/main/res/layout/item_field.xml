@@ -22,10 +22,10 @@
 
     <TextView
             android:layout_marginStart="20dp"
-            app:layout_constraintStart_toEndOf="@+id/mTextViewNumberLabel"
             android:id="@+id/mTextViewNumberValue"
             android:layout_marginTop="10dp"
             android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/bg_number_rectangle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -40,12 +40,14 @@
             android:layout_height="wrap_content"/>
 
     <TextView
-            android:layout_marginStart="20dp"
-            app:layout_constraintStart_toEndOf="@+id/mTextViewNameLabel"
             android:id="@+id/mTextViewNameValue"
-            android:layout_marginTop="10dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mTextViewNumberValue"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mTextViewNameLabel"
             android:layout_width="0dp"
+            android:textStyle="bold"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="wrap_content"/>
 
     <TextView
@@ -58,10 +60,9 @@
             android:layout_height="wrap_content"/>
 
     <TextView
-            android:layout_marginStart="20dp"
-            app:layout_constraintStart_toEndOf="@+id/mTextViewLengthLabel"
             android:id="@+id/mTextViewLengthValue"
             android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mTextViewNameValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -76,10 +77,10 @@
             android:layout_height="wrap_content"/>
 
     <TextView
-            android:layout_marginStart="20dp"
-            app:layout_constraintStart_toEndOf="@+id/mTextViewTypeLabel"
             android:id="@+id/mTextViewTypeValue"
             android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mTextViewLengthValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

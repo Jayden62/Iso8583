@@ -100,6 +100,10 @@ class ParserActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Remove space
+     * @param msg
+     */
     private fun removeWhiteSpaces(msg: String?): String {
         if (msg!!.isEmpty() || msg.isBlank()) {
             return ""
@@ -115,6 +119,8 @@ class ParserActivity : AppCompatActivity() {
 
     /**
      * Convert hex to binary
+     * @param hex
+     *
      */
     private fun hexToBinary(hex: String): String {
         val len = hex.length * 4

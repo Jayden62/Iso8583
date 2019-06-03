@@ -17,7 +17,7 @@
             android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/mButtonParseField"
+            app:layout_constraintBottom_toTopOf="@+id/mButtonParseMsg"
             android:layout_width="0dp"
             android:layout_marginBottom="20dp"
             android:layout_height="wrap_content"/>
@@ -26,7 +26,7 @@
     <Button
             android:id="@+id/mButtonParseField"
             android:clickable="true"
-            android:text="@string/parse_field"
+            android:text="@string/parse_msg"
             android:textAllCaps="false"
             android:textColor="@drawable/bg_text_selector"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +42,7 @@
             android:clickable="true"
             android:layout_marginTop="20dp"
             android:text="@string/config_field"
-            app:layout_constraintTop_toBottomOf="@+id/mButtonParseField"
+            app:layout_constraintTop_toBottomOf="@+id/mButtonParseMsg"
             android:textAllCaps="false"
             android:textColor="@drawable/bg_text_selector"
             app:layout_constraintEnd_toEndOf="parent"

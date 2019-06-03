@@ -86,20 +86,19 @@ class TypeRepository() {
     }
 
     @SuppressLint("StaticFieldLeak")
-    fun removeAllTypes(): MutableLiveData<Boolean> {
-        val result = MutableLiveData<Boolean>()
-        object : AsyncTask<Void, Void, Void?>() {
+    fun getTypeId(typeName: String): LiveData<Type?> {
+        val liveData = MutableLiveData<Type?>()
+        object : AsyncTask<Void, Void, Type?>() {
 
-            override fun doInBackground(vararg voids: Void): Void? {
-                 dao?.let { dao?.removeAllTypes() }
-                return null
+            override fun doInBackground(vararg voids: Void): Type? {
+                return dao?.getTypeId(typeName)
             }
 
-            override fun onPostExecute(aVoid: Void?) {
-                super.onPostExecute(aVoid)
-                result.value = true
+            override fun onPostExecute(result: Type?) {
+                super.onPostExecute(result)
+                liveData.value = result
             }
         }.execute()
-        return result
+        return liveData
     }
 }

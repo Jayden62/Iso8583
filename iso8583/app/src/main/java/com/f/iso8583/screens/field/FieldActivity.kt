@@ -18,8 +18,14 @@ import android.arch.lifecycle.Observer
 import com.f.iso8583.room.repository.TypeRepository
 import com.f.iso8583.utils.Constant
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
+import com.f.iso8583.common.EmptyItem
+import com.f.iso8583.common.NotFoundItem
 
-class FieldActivity : AppCompatActivity(), FieldItem.Callback, View.OnClickListener {
+class FieldActivity : AppCompatActivity(), FieldItem.Callback, View.OnClickListener, TextWatcher {
+
 
     private var TAG = this.javaClass.simpleName
 
@@ -37,9 +43,10 @@ class FieldActivity : AppCompatActivity(), FieldItem.Callback, View.OnClickListe
 
         mFloatingAdd?.setOnClickListener(this)
         mImageViewSearch?.setOnClickListener(this)
+        mEditTextSearch.addTextChangedListener(this)
         mAdapter = BaseAdapter()
 //        mRecyclerView?.layoutManager = LinearLayoutManager(this)
-        mRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        mRecyclerView.layoutManager = GridLayoutManager(this, 2) as RecyclerView.LayoutManager?
 
         mRecyclerView?.adapter = mAdapter
         initData()
@@ -50,9 +57,8 @@ class FieldActivity : AppCompatActivity(), FieldItem.Callback, View.OnClickListe
         fieldRepository?.getAllFields()?.observe(this,
             Observer<MutableList<Field>> { data ->
                 if (data!!.size == 0) {
-                    mAdapter.addItem(FieldEmptyItem(this))
+                    mAdapter.addItem(EmptyItem(this))
                 } else {
-
                     for (value in data) {
                         typeRepository?.getTypeName(value.typeId)?.observe(
                             this, Observer {
@@ -63,6 +69,19 @@ class FieldActivity : AppCompatActivity(), FieldItem.Callback, View.OnClickListe
                     }
                 }
             })
+    }
+
+    override fun afterTextChanged(s: Editable?) {
+
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        if (s.toString().isEmpty()) {
+            initData()
+        }
     }
 
     override fun onRestart() {
@@ -85,7 +104,7 @@ class FieldActivity : AppCompatActivity(), FieldItem.Callback, View.OnClickListe
         val pos = data?.let { mAdapter.getPosition(it) }
         pos?.let { mAdapter.removeItemAt(it) }
         if (mAdapter.itemCount == 0) {
-            mAdapter.addItem(FieldEmptyItem(this))
+            mAdapter.addItem(EmptyItem(this))
         }
     }
 
@@ -104,9 +123,32 @@ class FieldActivity : AppCompatActivity(), FieldItem.Callback, View.OnClickListe
 
             R.id.mImageViewSearch -> {
                 if (TextUtils.isEmpty(mEditTextSearch.text)) {
-                    Toast.makeText(this, "search empty ! ", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, this.getString(R.string.search_empty), Toast.LENGTH_SHORT).show()
                 } else {
-                    Log.d(TAG, "search data.")
+                    mAdapter.removeAll()
+                    /* Search by number */
+                    fieldRepository?.findField(mEditTextSearch.text.toString())?.observe(this, Observer {
+                        if (it == null) {
+                            mAdapter.addItem(EmptyItem(this))
+                        } else {
+                            typeRepository?.getTypeName(it.typeId)?.observe(this, Observer { type ->
+                                mAdapter.addItem(FieldItem(this, it, type?.typeName, this))
+                            })
+                        }
+                    })
+
+                    /* Search by type name */
+                    fieldRepository?.getFields(mEditTextSearch.text.toString())?.observe(this, Observer { fields ->
+                        if (fields != null) {
+                            for (it in fields) {
+                                typeRepository?.getTypeName(it.typeId)?.observe(this, Observer { type ->
+                                    mAdapter.addItem(FieldItem(this, it, type?.typeName, this))
+                                })
+                            }
+                        } else {
+                            mAdapter.addItem(EmptyItem(this))
+                        }
+                    })
                 }
             }
         }

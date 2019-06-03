@@ -27,7 +27,16 @@ class FieldItem(var context: Context, var data: Field?, var typeName: String?, v
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             when (typeName) {
                 "ans" -> {
-                    view?.mConstraintLayoutGroup?.setBackgroundColor(context.getColor(R.color.colorANS))
+                    view?.mTextViewTypeValue?.setTextColor(context.getColor(R.color.colorANS))
+                }
+                "z" -> {
+                    view?.mTextViewTypeValue?.setTextColor(context.getColor(R.color.colorZ))
+                }
+                "an" -> {
+                    view?.mTextViewTypeValue?.setTextColor(context.getColor(R.color.colorAN))
+                }
+                "b" -> {
+                    view?.mTextViewTypeValue?.setTextColor(context.getColor(R.color.colorB))
                 }
             }
         }

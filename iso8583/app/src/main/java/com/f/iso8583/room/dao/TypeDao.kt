@@ -16,6 +16,7 @@ interface TypeDao {
     @Query("SELECT * FROM types WHERE type_id=:typeId")
     fun getTypeName(typeId: String): Type?
 
-    @Query("DELETE FROM types")
-    fun removeAllTypes()
+    @Query("SELECT * FROM types WHERE type_name=:typeName ")
+    fun getTypeId(typeName: String): Type?
+
 }
