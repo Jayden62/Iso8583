@@ -84,7 +84,7 @@ class FieldRepository() {
                 if (mProgressDialog?.isShowing!!) {
                     Handler().postDelayed({
                         mProgressDialog?.dismiss()
-                    }, 1000)
+                    }, 500)
                 }
             }
         }.execute()
@@ -117,7 +117,7 @@ class FieldRepository() {
                 if (mProgressDialog?.isShowing!!) {
                     Handler().postDelayed({
                         mProgressDialog?.dismiss()
-                    }, 1000)
+                    }, 500)
                 }
             }
         }.execute()
@@ -126,28 +126,17 @@ class FieldRepository() {
 
 
     @SuppressLint("StaticFieldLeak")
-    fun findField(number: String): LiveData<Field?> {
-        val liveData = MutableLiveData<Field?>()
-        object : AsyncTask<Void, Void, Field?>() {
-            override fun onPreExecute() {
-                super.onPreExecute()
-                mProgressDialog?.setCancelable(false)
-                mProgressDialog?.show()
+    fun getLength(number: String): LiveData<String?> {
+        val liveData = MutableLiveData<String?>()
+        object : AsyncTask<Void, Void, String?>() {
+
+            override fun doInBackground(vararg voids: Void): String? {
+                return dao?.getLength(number)
             }
 
-
-            override fun doInBackground(vararg voids: Void): Field? {
-                return dao?.findField(number)
-            }
-
-            override fun onPostExecute(result: Field?) {
+            override fun onPostExecute(result: String?) {
                 super.onPostExecute(result)
                 liveData.value = result
-                if (mProgressDialog?.isShowing!!) {
-                    Handler().postDelayed({
-                        mProgressDialog?.dismiss()
-                    }, 1000)
-                }
             }
         }.execute()
         return liveData
@@ -177,4 +166,5 @@ class FieldRepository() {
             }
         }.execute()
     }
+
 }

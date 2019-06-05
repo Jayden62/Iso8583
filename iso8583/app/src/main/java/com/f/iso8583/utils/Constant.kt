@@ -10,6 +10,7 @@ object Constant {
         const val FIELD_11 = 11
         const val FIELD_12 = 12
         const val FIELD_13 = 13
+        const val FIELD_14 = 14
         const val FIELD_22 = 22
         const val FIELD_23 = 23
         const val FIELD_24 = 24
@@ -20,6 +21,7 @@ object Constant {
         const val FIELD_39 = 39
         const val FIELD_41 = 41
         const val FIELD_42 = 42
+        const val FIELD_55 = 55
         const val FIELD_62 = 62
     }
 

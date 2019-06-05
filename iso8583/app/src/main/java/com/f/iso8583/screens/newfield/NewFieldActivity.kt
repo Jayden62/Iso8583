@@ -12,6 +12,9 @@ import com.f.iso8583.R
 import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import com.f.iso8583.room.model.Field
 import com.f.iso8583.room.model.Type
 import com.f.iso8583.room.repository.FieldRepository
@@ -21,12 +24,12 @@ import com.f.iso8583.utils.Dialog
 import kotlinx.android.synthetic.main.activity_new_field.*
 import java.util.*
 
-class NewFieldActivity : AppCompatActivity(), View.OnClickListener {
-
+class NewFieldActivity : AppCompatActivity(), View.OnClickListener, TextWatcher {
 
     private var types: MutableList<String> = mutableListOf("n", "z", "an", "ans", "b")
 
     private var typeRepository: TypeRepository? = null
+
     private var fieldRepository: FieldRepository? = null
 
     private var value: Type? = null
@@ -43,12 +46,13 @@ class NewFieldActivity : AppCompatActivity(), View.OnClickListener {
 
         typeRepository = TypeRepository(this)
         fieldRepository = FieldRepository(this)
+        mEditTextFieldNumber.addTextChangedListener(this)
         initData()
 
         if (intent.hasExtra(Constant.Data.DATA)) {
             field = intent.getParcelableExtra(Constant.Data.DATA)
 
-            mEditTextFieldNumber.setText(field?.number?.toString())
+            mEditTextFieldNumber.setText(field?.number)
             mEditTextFieldName.setText(field?.name)
             mEditTextLength.setText(field?.length)
         }
@@ -83,6 +87,27 @@ class NewFieldActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+    }
+
+    override fun afterTextChanged(s: Editable?) {
+        Log.d(TAG, "afterTextChanged")
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        Log.d(TAG, "beforeTextChanged")
+
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        if (s.toString() == "2" || s.toString() == "54" || s.toString() == "55" || s.toString() == "45" || s.toString() == "48"
+            || s.toString() == "60" || s.toString() == "61" || s.toString() == "62" || s.toString() == "63" || s.toString() == "35"
+        ) {
+            mEditTextLength.setText("0")
+            mEditTextLength.isEnabled = false
+        } else {
+            mEditTextLength.setText("")
+            mEditTextLength.isEnabled = true
         }
     }
 
