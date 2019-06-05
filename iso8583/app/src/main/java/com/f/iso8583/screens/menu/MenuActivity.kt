@@ -15,7 +15,7 @@ class MenuActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-        mButtonParseField.setOnClickListener(this)
+        mButtonParseMsg.setOnClickListener(this)
         mButtonConfig.setOnClickListener(this)
     }
 

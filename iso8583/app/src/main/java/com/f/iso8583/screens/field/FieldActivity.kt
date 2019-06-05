@@ -125,29 +125,21 @@ class FieldActivity : AppCompatActivity(), FieldItem.Callback, View.OnClickListe
                 if (TextUtils.isEmpty(mEditTextSearch.text)) {
                     Toast.makeText(this, this.getString(R.string.search_empty), Toast.LENGTH_SHORT).show()
                 } else {
-                    mAdapter.removeAll()
-                    /* Search by number */
-                    fieldRepository?.findField(mEditTextSearch.text.toString())?.observe(this, Observer {
-                        if (it == null) {
-                            mAdapter.addItem(EmptyItem(this))
-                        } else {
-                            typeRepository?.getTypeName(it.typeId)?.observe(this, Observer { type ->
-                                mAdapter.addItem(FieldItem(this, it, type?.typeName, this))
-                            })
-                        }
-                    })
-
-                    /* Search by type name */
+                    /* Search field */
                     fieldRepository?.getFields(mEditTextSearch.text.toString())?.observe(this, Observer { fields ->
-                        if (fields != null) {
+                        mAdapter.removeAllItem()
+
+                        if (fields.isNullOrEmpty() || fields.size == 0) {
+                            mAdapter.addItem(NotFoundItem(this))
+                        } else {
                             for (it in fields) {
                                 typeRepository?.getTypeName(it.typeId)?.observe(this, Observer { type ->
                                     mAdapter.addItem(FieldItem(this, it, type?.typeName, this))
                                 })
+
                             }
-                        } else {
-                            mAdapter.addItem(EmptyItem(this))
                         }
+
                     })
                 }
             }

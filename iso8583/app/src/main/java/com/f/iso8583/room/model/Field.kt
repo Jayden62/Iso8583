@@ -22,7 +22,7 @@ class Field(
     @ColumnInfo(name = "id")
     var id: String,
     @ColumnInfo(name = "number")
-    var number: Int,
+    var number: String,
     @ColumnInfo(name = "name")
     var name: String,
     @ColumnInfo(name = "length")
@@ -32,7 +32,7 @@ class Field(
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
-        parcel.readInt(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString()
@@ -40,7 +40,7 @@ class Field(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
-        parcel.writeInt(number)
+        parcel.writeString(number)
         parcel.writeString(name)
         parcel.writeString(length)
         parcel.writeString(typeId)

@@ -24,7 +24,7 @@
 
 
     <Button
-            android:id="@+id/mButtonParseField"
+            android:id="@+id/mButtonParseMsg"
             android:clickable="true"
             android:text="@string/parse_msg"
             android:textAllCaps="false"

@@ -97,7 +97,7 @@ class NewFieldActivity : AppCompatActivity(), View.OnClickListener {
                     Dialog.showMessageDialog(this.getString(R.string.input_empty), this)
                 } else {
                     if (field != null) {
-                        field?.number = (mEditTextFieldNumber.text.toString()).toInt()
+                        field?.number = mEditTextFieldNumber.text.toString()
                         field?.name = mEditTextFieldName.text.toString()
                         field?.length = mEditTextLength.text.toString()
                         field?.typeId = value?.typeId.toString()
@@ -106,7 +106,7 @@ class NewFieldActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         val data = Field(
                             id,
-                            (mEditTextFieldNumber.text.toString()).toInt(),
+                            mEditTextFieldNumber.text.toString(),
                             mEditTextFieldName.text.toString(),
                             mEditTextLength.text.toString(),
                             value?.typeId!!

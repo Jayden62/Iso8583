@@ -16,8 +16,8 @@ interface FieldDao {
     @Query("SELECT * FROM fields WHERE number=:number")
     fun findField(number: String?): Field?
 
-    @Query("SELECT fields.*, types.type_name from Fields join types on fields.type_id=types.type_id where types.type_name=:typeName")
-    fun getFields(typeName: String?): MutableList<Field>?
+    @Query("SELECT fields.*, types.type_name from Fields join types on fields.type_id=types.type_id where number=:search or type_name=:search ")
+    fun getFields(search: String?): MutableList<Field>?
 
     @Query("DELETE FROM fields where id=:id")
     fun deleteField(id: String?)
