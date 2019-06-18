@@ -7,6 +7,8 @@
     <color name="colorBgCenter">#ba6d7a</color>
     <color name="colorGray">#abb0ba</color>
 
+    <color name="colorGrey">#BBC2CA</color>
+
     <color name="colorNormal">#1b7ba0</color>
     <color name="colorActive">#61c2e8</color>
 
@@ -15,4 +17,7 @@
     <color name="colorZ">#278df4</color>
     <color name="colorAN">#f98e3b</color>
     <color name="colorB">#ddcc0d</color>
+    <color name="colorBackground">#E1E1E1</color>
+    <color name="colorCategorySelected">#f2f0ff</color>
+
 </resources>

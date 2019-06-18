@@ -11,14 +11,18 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".screens.parser.ParserActivity">
+        </activity>
+        <activity android:name=".screens.scan.ScanActivity">
+        </activity>
         <activity android:name=".screens.newfield.NewFieldActivity">
         </activity>
         <activity
-                android:name=".screens.parser.ParserActivity"
+                android:name=".screens.field.FieldActivity"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".screens.field.FieldActivity"
+                android:name=".screens.setting.SettingActivity"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity android:name=".screens.menu.MenuActivity">

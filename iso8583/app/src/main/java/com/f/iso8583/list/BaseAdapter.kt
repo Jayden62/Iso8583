@@ -217,7 +217,7 @@ class BaseAdapter<T> : RecyclerView.Adapter<BaseHolder>() {
     fun getPosition(data: T): Int {
         var find = -1
         for ((index, value) in mItems.withIndex()) {
-            if (value?.mData?.equals(data)!!) {
+            if (value.mData?.equals(data)!!) {
                 find = index
                 break
             }

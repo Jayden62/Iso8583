@@ -31,27 +31,28 @@ object Constant {
 
     object Data{
         const val REQUEST_CODE_ADD_DATA  = 101
+        const val REQUEST_CODE_SCAN  = 210
         const val DATA = "data"
     }
 
     object METHODS {
-        fun getTPDU(message: String): String {
+        fun getTPDU(message: String?): String? {
             lastVal = 10
-            return message.substring(0, lastVal!!)
+            return message?.substring(0, lastVal!!)
         }
 
-        fun getMTI(message: String): String {
+        fun getMTI(message: String?): String? {
             lastVal = 14
-            return message.substring(10, lastVal!!)
+            return message?.substring(10, lastVal!!)
         }
 
-        fun getBitmap(message: String): String {
+        fun getBitmap(message: String?): String? {
             lastVal = 30
-            return message.substring(14, lastVal!!)
+            return message?.substring(14, lastVal!!)
         }
 
-        fun analyseBitmap(message: String): String {
-            return message.substring(lastVal!!, message.length)
+        fun analyseBitmap(message: String?): String? {
+            return message?.substring(lastVal!!, message.length)
         }
 
         fun getField35(mess: String): String {

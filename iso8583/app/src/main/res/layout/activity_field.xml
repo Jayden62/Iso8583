@@ -11,7 +11,7 @@
     <EditText
             android:id="@+id/mEditTextSearch"
             android:hint="@string/search"
-            android:padding="15dp"
+            android:padding="10dp"
             android:drawablePadding="10dp"
             android:background="@drawable/bg_input_field"
             app:layout_constraintTop_toTopOf="parent"
